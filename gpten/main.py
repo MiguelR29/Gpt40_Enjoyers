@@ -15,6 +15,13 @@ def obtain_logs():
     print(type(logs_real))
     return logs_real 
 
+@app.route('/obtain_blacklist')
+def obtain_blacklist():
+    blacklist = obtener_blacklist()
+    blacklist_real = json.dumps(blacklist, default=str)
+    
+    print(type(blacklist_real))
+    return blacklist_real
 
 
 
