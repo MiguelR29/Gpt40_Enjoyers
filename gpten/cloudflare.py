@@ -1,6 +1,6 @@
 import requests
 
-CLOUDFLARE_WORKER_URL = "https://firewall-worker.hramirez03.workers.dev"
+CLOUDFLARE_WORKER_URL = "https://firewall-worker.TU_DOMINIO.workers.dev"
 
 def check_traffic(ip):
     headers = {"CF-Connecting-IP": ip}
