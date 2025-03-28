@@ -32,8 +32,10 @@ SECURITY_LOGS = {
       "device": "Smart TV",
       "blocked": True
     }
-  ],
-  "blacklist": [
+  ]
+}
+BlackList = {
+    "blacklist": [
     {
       "ip": "192.168.1.10",
       "added_on": "2025-03-27T14:35:00Z",
@@ -60,11 +62,11 @@ def initialize_client(api_key):
     """Initialize the Gemini client"""
     return genai.Client(api_key=api_key)
 
-def analyze_logs(client):
+def analyze_logs(client,logs):
     """Analyze the security logs and provide initial recommendations"""
     model = "gemini-2.0-flash"
     
-    log_summary = json.dumps(SECURITY_LOGS, indent=2)
+    log_summary = json.dumps(logs, indent=2)
     
     contents = [
         types.Content(
@@ -99,13 +101,13 @@ def analyze_logs(client):
     
     return full_response
 
-def generate_response(client, user_input, conversation_history):
+def generate_response(client, user_input, conversation_history,Logs):
     """Generate a response from the Gemini model"""
     model = "gemini-2.0-flash"
     
     # Include logs in the context if the question is security-related
     if any(keyword in user_input.lower() for keyword in ['registro', 'log', 'ataque', 'seguridad', 'threat', 'attack']):
-        log_context = f"\nContexto de registros actuales:\n{json.dumps(SECURITY_LOGS, indent=2)}"
+        log_context = f"\nContexto de registros actuales:\n{json.dumps(Logs, indent=2)}"
         user_input += log_context
     
     # Build the conversation contents
@@ -143,7 +145,7 @@ Mantén las respuestas concisas pero informativas.""")
     
     return full_response
 
-def display_log_summary():
+def display_log_summary(Logs,Blacklist):
     """Display a formatted summary of the current logs"""
     print("\n" + "="*50)
     print("RESUMEN DE REGISTROS ACTUALES".center(50))
@@ -152,20 +154,20 @@ def display_log_summary():
     # Count threats
     threat_counts = {}
     blocked_count = 0
-    for log in SECURITY_LOGS['logs']:
+    for log in Logs['logs']:
         attack_type = log['attack_type']
         threat_counts[attack_type] = threat_counts.get(attack_type, 0) + 1
         if log['blocked']:
             blocked_count += 1
     
-    print(f"\nTotal de eventos de seguridad: {len(SECURITY_LOGS['logs'])}")
+    print(f"\nTotal de eventos de seguridad: {len(Logs['logs'])}")
     print(f"Intentos bloqueados: {blocked_count}")
     print("\nTipos de ataques detectados:")
     for attack, count in threat_counts.items():
         print(f"- {attack}: {count}")
     
     print("\nDirecciones IP en lista negra:")
-    for entry in SECURITY_LOGS['blacklist']:
+    for entry in Blacklist['blacklist']:
         print(f"- {entry['ip']} ({entry['reason']})")
 
 def main():
@@ -173,7 +175,7 @@ def main():
     client = initialize_client(api_key)
     
     # Initial security analysis
-    initial_analysis = analyze_logs(client)
+    initial_analysis = analyze_logs(client,SECURITY_LOGS)
     
     print("\n" + "="*50)
     print("IoT Cybersecurity Chatbot".center(50))
@@ -203,7 +205,7 @@ def main():
                 
             if user_input.lower() == 'lista_negra':
                 print("\nDirecciones IP en lista negra:")
-                for entry in SECURITY_LOGS['blacklist']:
+                for entry in BlackList['blacklist']:
                     print(f"- {entry['ip']} (Agregado: {entry['added_on']})")
                     print(f"  Razón: {entry['reason']}\n")
                 continue
@@ -212,7 +214,7 @@ def main():
                 print("Por favor, ingresa una pregunta o consulta.")
                 continue
                 
-            response = generate_response(client, user_input, conversation_history)
+            response = generate_response(client, user_input, conversation_history,SECURITY_LOGS)
             
             # Update conversation history (keeping last few exchanges)
             conversation_history.extend([
