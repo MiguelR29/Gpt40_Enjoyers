@@ -200,7 +200,7 @@ def main():
                 break
                 
             if user_input.lower() == 'registros':
-                display_log_summary()
+                display_log_summary(SECURITY_LOGS,BlackList)
                 continue
                 
             if user_input.lower() == 'lista_negra':
@@ -233,5 +233,5 @@ def main():
             print(f"\nOcurrió un error: {str(e)}")
             print("Por favor, intenta de nuevo o formula tu pregunta de otra manera.")
 
-if __name__ == "__main__":
+if __name__=="__main__":
     main()
