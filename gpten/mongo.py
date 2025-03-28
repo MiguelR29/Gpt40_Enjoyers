@@ -19,5 +19,14 @@ def obtener_logs():
 
     return list(logs.find())
 
+def obtener_blacklist():
+    client = connect()
+    db = client["firewall"]
+    blacklist = db["blacklist"]
+    
+    return list(blacklist.find())
+
+
+
 
 
