@@ -1,6 +1,6 @@
 from gemini import *
 from mongo import *
-from cloudflare import *
+from gpten.scapy import *
 from flask import Flask,request,jsonify
 from flask_cors import CORS 
 
@@ -22,7 +22,6 @@ def obtain_blacklist():
     
     print(type(blacklist_real))
     return blacklist_real
-
 
 
 if __name__ == "__main__":
