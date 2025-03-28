@@ -5,6 +5,9 @@ from flask_cors import CORS
 
 app =  Flask(__name__)
 
+CORS(app, origins=["http://localhost:3000"])
+API_KEY = load_api_key()
+
 
 @app.route('/obtain_logs')
 def obtain_logs():
@@ -37,7 +40,7 @@ async def log_event(event: dict):
     
     return {"message": "Log guardado"}
 
-@app.route('/chatbot',methods = ['POST'])
+@app.route('/chatbot/analyze',methods = ['POST'])
 async def chatbot():
     chatbot()
 
