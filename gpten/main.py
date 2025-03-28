@@ -10,9 +10,10 @@ app =  Flask(__name__)
 @app.route('/obtain_logs')
 def obtain_logs():
     logs = obtener_logs()
+    logs_real = json.dumps(logs, default=str)
     
-    return list(logs)
-
+    print(type(logs_real))
+    return logs_real 
 
 
 
