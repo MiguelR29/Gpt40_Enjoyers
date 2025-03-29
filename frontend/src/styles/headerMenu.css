@@ -1,0 +1,12 @@
+.mainTitle {
+    margin-bottom: 18px;
+}
+
+.contenedorMenu a {
+    color: #e3e3e3;
+}
+
+.contenedorMenu a:nth-child(1),
+.contenedorMenu a:nth-child(2) {
+    margin-right: 12px;
+}

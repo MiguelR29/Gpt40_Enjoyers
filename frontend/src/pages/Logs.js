@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../styles/logs.css";
 
 function Logs() {
     const [logs, setLogs] = useState([]);
@@ -11,28 +12,38 @@ function Logs() {
     }, []);
 
     return (
-        <div>
-            <h1>Registro de Logs</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>IP</th>
-                        <th>Timestamp</th>
-                        <th>Tipo de Ataque</th>
-                        <th>Dispositivo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {logs.map((log, index) => (
-                        <tr key={index}>
-                            <td>{log.ip}</td>
-                            <td>{log.timestamp}</td>
-                            <td>{log.attack_type}</td>
-                            <td>{log.device}</td>
+        <div className="mainContainerLogs">
+            <header>
+                <h1 className="mainTitle">Registro de Intentos de Ataque</h1>
+                <div className="contenedorMenu">
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/init">ChatBot</a>
+                    <a href="/dispositivos">Dispositivos</a>
+                </div>
+            </header>
+
+            <div className="tableContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>IP</th>
+                            <th>Timestamp</th>
+                            <th>Tipo de Ataque</th>
+                            <th>Dispositivo</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {logs.map((log, index) => (
+                            <tr key={index}>
+                                <td>{log.ip}</td>
+                                <td>{log.timestamp}</td>
+                                <td>{log.attack_type}</td>
+                                <td>{log.device}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

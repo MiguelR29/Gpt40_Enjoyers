@@ -1,0 +1,94 @@
+html, body {
+    overflow-y: scroll; 
+}
+
+header {
+    width: 80%;
+    margin-bottom: 32px;
+    margin-top: 18px;
+    border-bottom: 1px solid #2d2d2d;
+    padding-bottom: 38px;
+}
+
+.contenedorMainChat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1b1b1b;
+    padding: 32px;
+    border-radius: 12px;
+    position: fixed;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 180%);
+    z-index: 1;
+}
+
+.formContainer textarea {
+    width: 80%;
+    font-family: 'Inter';
+    font-size: 14px;
+    border: 0 !important;
+    outline: none;
+    resize: none;
+    margin-right: 18px;
+    background-color: #1b1b1b;
+    color: #fdfdfd;
+}
+
+.formContainer button {
+    background-color: #fdfdfd;
+    font-family: 'Inter';
+    font-size: 14px;
+    border-radius: 6px;
+} 
+
+.formContainer button:hover {
+    background-color: #ababab;
+    color: #2d2d2d;
+}
+
+.chatContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 200px;
+}
+
+.inicioContainer,
+.contenedorChat {
+    width: 80%;
+}
+
+.contenedorPregunta {
+    background-color: #2d2d2d;
+    padding: 16px 20px;
+    border-radius: 8px;
+    max-width: 40%;
+    width: fit-content;
+    position: relative;
+}
+
+.contenedorRespuesta {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 38px;
+}
+
+.contenedorRespuesta:last-child {
+    margin-bottom: 0 !important;
+}
+
+.contendorFlexP {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 32px;
+}

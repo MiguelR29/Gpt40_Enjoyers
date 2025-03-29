@@ -1,0 +1,32 @@
+.tableContainer {
+    width: calc(80% - 64px);
+    background-color: #1b1b1b;
+    padding: 32px;
+    border-radius: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td {
+    text-align: center;
+    padding: 12px 24px;
+}
+
+.mainContainerLogs {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+th, td {
+    border: 2px solid #2d2d2d;
+    padding: 16px;
+}
+
+th {
+    background-color: #151515 !important;
+}
