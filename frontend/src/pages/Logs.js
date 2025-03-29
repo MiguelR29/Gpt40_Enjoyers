@@ -20,7 +20,7 @@ function Logs() {
                 <div className="encerrar">
                     <h1 className="mainTitle">Registro de Intentos de Ataque</h1>
                     <div className="contenedorMenu">
-                        <a href="/dashboard">Dashboard</a>
+                        <a href="/dashboard">Panel de Seguridad</a>
                         <a href="/init">ChatBot</a>
                         <a href="/dispositivos">Dispositivos</a>
                     </div>

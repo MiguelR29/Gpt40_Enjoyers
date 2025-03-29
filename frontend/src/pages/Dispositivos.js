@@ -10,7 +10,7 @@ function Dispositivos() {
                 <div className="encerrar">
                     <h1 className="mainTitle">Dispositivos en la Red</h1>
                     <div className="contenedorMenu">
-                        <a href="/dashboard">Dashboard</a>
+                        <a href="/dashboard">Panel de Seguridad</a>
                         <a href="/init">ChatBot</a>
                         <a href="/logs">Registros</a>
                     </div>
