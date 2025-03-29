@@ -1,8 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import imgPrincipal from "../img/a-chosen-soul-aZyP_xZUpVk-unsplash.jpg";
 
 function Login() {
+    const navigate = useNavigate();
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        navigate("/");
+    };
+
     return (
         <div className="contenedorPrincipal">
             <div className="capaBlur"></div>
@@ -18,7 +26,7 @@ function Login() {
                     <label htmlFor="password" className="login-label">Contraseña</label>
                     <input type="password" id="password" className="login-input" />
 
-                    <button type="submit" className="login-button">Ingresar</button>
+                    <button type="submit" className="login-button" onClick={handleClick}>Ingresar</button>
                 </form>
             </div>
         </div>

@@ -5,11 +5,15 @@ html, body {
     top: 0;
     left: 0;
     font-family: "Inter";
+    overflow-y: hidden;
 }
 
 .contenedorPrincipal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
 .contenedorImg {
@@ -35,11 +39,73 @@ html, body {
     top: 0;
     left: 0;
     z-index: 1;
-    background: linear-gradient();
-    backdrop-filter: blur(2px);
+    background: linear-gradient(to bottom, #efece5, #000000bd);
+    backdrop-filter: blur(8px);
 }
 
 .contenedorForm {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     z-index: 2;
+    background-color: #00000000;
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 48px;
+    box-shadow: 0 0 26px 8px #00000021;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: #fdfdfd;
+}
+
+.login-title {
+    margin-top: 0;
+    margin-bottom: 38px;
+    color: #fdfdfd;
+}
+
+.login-label {
+    margin-bottom: 6px;
+}
+
+#username {
+    margin-bottom: 18px;
+}
+
+.login-input {
+    margin-bottom: 32px;
+}
+
+input {
+    background-color: rgba(0, 0, 0, 0.25);
+    outline: none;
+    border: 0;
+    padding: 12px;
+    font-family: 'Inter';
+    border-radius: 8px;
+    font-size: 14px;
+    color: #fdfdfd;
+}
+
+button {
+    background-color: #efece5;
+    font-family: 'Inter';
+    padding: 12px 24px;
+    border: 0;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #0000007d;
+    color: #fdfdfd;
 }
