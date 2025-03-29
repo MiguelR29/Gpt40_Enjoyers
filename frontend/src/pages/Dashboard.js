@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
-// import axios from "axios";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
 function Dashboard() {
     const [logs, setLogs] = useState([]);
 
     useEffect(() => {
-        const logSimulados = [
-            { ip: "192.168.0.1", timestamp: "2025-03-28 12:00", tipo: "Ataque DDoS", descripcion: "Tráfico anómalo detectado" },
-            { ip: "192.168.0.2", timestamp: "2025-03-28 12:05", tipo: "Phishing", descripcion: "Intento de suplantación de identidad" },
-            { ip: "192.168.0.3", timestamp: "2025-03-28 12:10", tipo: "Malware", descripcion: "Archivo sospechoso detectado" },
-        ];
-
-        setTimeout(() => {
-            setLogs(logSimulados);
-        }, 1000);
+        fetch("http://127.0.0.1:5000/obtain_logs")
+            .then(response => response.json())
+            .then(data => setLogs(data))
+            .catch(error => console.error("Error: ", error));
     }, []);
 
     return (
@@ -23,7 +17,7 @@ function Dashboard() {
             <LineChart width={800} height={400} data={logs}>
                 <CartesianGrid stroke="#ccc" />
                 <XAxis datakey="timestamp" />
-                <YAxis datakey="ip"/>
+                <YAxis datakey="ip" />
                 <Tooltip />
                 <Legend />
                 <Line type="monotone" datakey="tipo" stroke="#8884d8" />
