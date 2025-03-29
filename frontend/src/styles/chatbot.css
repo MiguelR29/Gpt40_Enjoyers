@@ -8,6 +8,8 @@ header {
     margin-top: 18px;
     border-bottom: 1px solid #2d2d2d;
     padding-bottom: 38px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .contenedorMainChat {

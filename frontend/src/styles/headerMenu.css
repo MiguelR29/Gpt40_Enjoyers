@@ -4,9 +4,43 @@
 
 .contenedorMenu a {
     color: #e3e3e3;
+    transition: 0.3s;
+}
+
+.contenedorMenu a:hover {
+    color: #e3e3e3bd;
 }
 
 .contenedorMenu a:nth-child(1),
 .contenedorMenu a:nth-child(2) {
     margin-right: 12px;
+}
+
+#btnCerrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    background-color: #2d2d2d;
+    outline: none;
+    border: 0;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fdfdfd;
+    font-family: 'Inter';
+    margin-top: 24px;
+    height: 38px;
+    transition: 0.3s;
+}
+
+#btnCerrar:hover {
+    background-color: #3d3d3d;
+}
+
+#btnCerrar svg {
+    width: 24px;
+    height: 24px;
+    stroke: #fdfdfd;
+    margin-right: 6px;
 }
