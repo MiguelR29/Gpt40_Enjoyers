@@ -104,7 +104,7 @@ def analyze_logs(client,logs):
 def generate_response(client, user_input, conversation_history,Logs):
     """Generate a response from the Gemini model"""
     model = "gemini-2.0-flash"
-    
+
     # Include logs in the context if the question is security-related
     if any(keyword in user_input.lower() for keyword in ['registro', 'log', 'ataque', 'seguridad', 'threat', 'attack']):
         log_context = f"\nContexto de registros actuales:\n{json.dumps(Logs, indent=2)}"
