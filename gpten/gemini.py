@@ -104,7 +104,7 @@ def analyze_logs(client,logs):
 def generate_response(client, user_input, conversation_history,Logs):
     """Generate a response from the Gemini model"""
     model = "gemini-2.0-flash"
-    
+
     # Include logs in the context if the question is security-related
     if any(keyword in user_input.lower() for keyword in ['registro', 'log', 'ataque', 'seguridad', 'threat', 'attack']):
         log_context = f"\nContexto de registros actuales:\n{json.dumps(Logs, indent=2)}"
@@ -200,7 +200,7 @@ def main():
                 break
                 
             if user_input.lower() == 'registros':
-                display_log_summary()
+                display_log_summary(SECURITY_LOGS,BlackList)
                 continue
                 
             if user_input.lower() == 'lista_negra':
@@ -233,5 +233,5 @@ def main():
             print(f"\nOcurrió un error: {str(e)}")
             print("Por favor, intenta de nuevo o formula tu pregunta de otra manera.")
 
-if __name__ == "__main__":
+if __name__=="__main__":
     main()
