@@ -5,10 +5,12 @@ function Login() {
     const { loginWithRedirect } = useAuth0();
 
     useEffect(() => {
-        loginWithRedirect();
+        loginWithRedirect({
+            appState: { returnTo: "/dashboard" }
+        });
     }, [loginWithRedirect]);
 
-    return null; // No necesitas renderizar nada ya que redirige automáticamente
+    return null; 
 }
 
 export default Login;
