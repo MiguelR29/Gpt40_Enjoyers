@@ -15,10 +15,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         
-        <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
-        <Route path="/logs" element={<ProtectedRoute element={<Logs />} />} />
-        <Route path="/init" element={<ProtectedRoute element={<Chatbot />} />} />
-        <Route path="/dispositivos" element={<ProtectedRoute element={<Dispositivos />} />} />
+        <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/logs" element={<Logs/>} />
+        <Route path="/init" element={<Chatbot/>} />
+        <Route path="/dispositivos" element={<Dispositivos/>} />
       </Routes>
     </Router>
   );

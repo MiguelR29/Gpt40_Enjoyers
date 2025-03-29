@@ -41,14 +41,19 @@ header {
     color: #fdfdfd;
 }
 
-.formContainer button {
+.formContainer #btnConsultar {
     background-color: #fdfdfd;
     font-family: 'Inter';
     font-size: 14px;
     border-radius: 6px;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: 0.3s;
+    outline: none !important;
+    border: 0;
 } 
 
-.formContainer button:hover {
+.formContainer #btnConsultar:hover {
     background-color: #ababab;
     color: #2d2d2d;
 }
