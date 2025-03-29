@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router-dom";
+import Loader from "../loader"; 
 
 function Login() {
     const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
@@ -11,10 +12,9 @@ function Login() {
         }
     }, [isAuthenticated, isLoading, loginWithRedirect]);
 
-    if (isLoading) return <p>Cargando...</p>;
+    if (isLoading) return <Loader />;
 
-    return isAuthenticated ? <Navigate to="/dashboard" /> : <p>Redirigiendo al login...</p>;
+    return isAuthenticated ? <Navigate to="/dashboard" />: null;
 }
-
 
 export default Login;
