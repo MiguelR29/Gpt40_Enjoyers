@@ -55,7 +55,7 @@ def chat():
     blacklist = obtener_blacklist()
     try:
         data= request.get_json()
-        user_input = data['message']
+        user_input = data['pregunta']
         if not user_input:
             return jsonify({"response":"Ingrese un mensaje"})
         
@@ -86,7 +86,7 @@ def chat():
 
         return jsonify({"response": f"Ocurrió un error: {str(e)}. Por favor, intenta de nuevo."}), 500
 
-@app.route('/init',methods=['POST'])
+@app.route('/init')
 def initialize():
     logs = obtener_logs()
     global API_KEY, CLIENT, conversation_history
@@ -94,13 +94,15 @@ def initialize():
         return jsonify({"error": "API key is required."}), 400
     try:
         initial_analysis = analyze_logs(CLIENT,logs)
+        analisis= json.dumps(initial_analysis, default=str)
         conversation_history = [ 
             types.Content(
                 role="model",
-                parts=[types.Part.from_text(text=initial_analysis)],
+                parts=[types.Part.from_text(text=analisis)],
             )
         ]
-        return jsonify({"message": "Chatbot initialized successfully."})
+        
+        return jsonify({"message": analisis})
     except Exception as e:
         return jsonify({"error": f"Failed to initialize chatbot: {str(e)}"}), 500
         

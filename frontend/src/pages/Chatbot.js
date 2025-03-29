@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 function Chatbot() {
+    const [logs, setLogs] = useState([]);
     const [question, setQuestion] = useState("");
     const [response, setResponse] = useState("");
 
@@ -13,7 +14,14 @@ function Chatbot() {
             setResponse("Error al consultar el chatbot");
         }
     };
-
+    
+    useEffect(() => {
+        fetch("http://127.0.0.1:5000/init")
+            .then(response => response.json())
+            .then(data => setLogs(data))
+            .catch(error => console.error("Error: ", error));
+    }, []);      
+    
     return (
         <div>
             <h1>Chatbot de Seguridad</h1>
