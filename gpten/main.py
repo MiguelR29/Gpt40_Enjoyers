@@ -5,7 +5,7 @@ from flask_cors import CORS
 
 app =  Flask(__name__)
 
-CORS(app, origins=["http://localhost:3000"])
+CORS(app)
 API_KEY = load_api_key()
 CLIENT = initialize_client(API_KEY)
 
@@ -21,7 +21,6 @@ conversation_history = []
 def obtain_logs():  
     logs = obtener_logs()
     logs_real = json.dumps(logs, default=str)
-    print(type(logs_real))
     return logs_real 
 
 @app.route('/obtain_blacklist')
@@ -62,13 +61,13 @@ def chat():
         if user_input.lower() in ['salir','exit','quit']:
             return jsonify({"response": "Hasta luego! Recomiendo revisar tus dispositivos IoT regularmente."})
         
-        if user_input.lower() == 'registros':
+        if user_input.lower() in['registros','registers'] :
             registros = json.dumps(logs, default=str)
-            return jsonify({"response": registros})
+            return registros
         
         if user_input.lower() == 'lista_negra':
             blklist = json.dumps(blacklist, default=str)
-            return jsonify({"response": blklist})
+            return blklist
         
         response = generate_response(CLIENT, user_input, conversation_history, logs)
         
@@ -89,11 +88,12 @@ def chat():
 @app.route('/init')
 def initialize():
     logs = obtener_logs()
+    logs_real = json.dumps(logs,default=str)
     global API_KEY, CLIENT, conversation_history
     if not API_KEY:
         return jsonify({"error": "API key is required."}), 400
     try:
-        initial_analysis = analyze_logs(CLIENT,logs)
+        initial_analysis = analyze_logs(CLIENT,logs_real)
         analisis= json.dumps(initial_analysis, default=str)
         conversation_history = [ 
             types.Content(
