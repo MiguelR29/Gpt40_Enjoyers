@@ -113,7 +113,7 @@ function Chatbot() {
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
                 />
-                <button onClick={consultarChatbot}>Consultar</button>
+                <button id="btnConsultar" onClick={consultarChatbot}>Consultar</button>
             </div>
 
             <div className="chatContainer">
