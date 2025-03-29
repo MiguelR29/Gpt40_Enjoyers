@@ -2,10 +2,15 @@ from gemini import *
 from mongo import *
 from flask import Flask,request,jsonify
 from flask_cors import CORS 
+import random 
+import requests
+from datetime import datetime
+
+
 
 app =  Flask(__name__)
 
-CORS(app, origins=["http://localhost:3000"])
+CORS(app)
 API_KEY = load_api_key()
 CLIENT = initialize_client(API_KEY)
 
@@ -32,21 +37,42 @@ def obtain_blacklist():
 
     return blacklist_real
 
-@app.route("/detect",methods = ['POST'])
-async def detect(event:dict):
-    client = connect()
-    db = client['logs']
-    if event["threat_level"] > 3:
-        db.insert_one(event)
-    return {"message": "Evento registrado"}
 
-@app.route('/logs',methods=['POST'])
-async def log_event(event: dict):
-    client = connect()
-    logs = client['logs']
-    logs.insert_one(event)
-    
-    return {"message": "Log guardado"}
+@app.route('/dashboard')
+def upload_logs():
+    num = random.randint(1,5)
+    if num%2:
+        try:
+            WORKER_URL = "https://firewall-worker.hramirez03.workers.dev/dns-query?name=example.com"
+            response = requests.get(WORKER_URL, headers={"Accept": "application/json"})
+            data = response.json()
+            ip = data['ip']
+            timestamp = data['timestamp']
+            threat_level = data['threat_level']
+            attack_type = data['attack_type']
+            device = data['device']
+            blocked = data['blocked']
+            crear_log(ip,timestamp,threat_level,attack_type,device,blocked)
+            response2 = requests.get(WORKER_URL, headers={"Accept": "application/json"})
+            data2 = response2.json()
+            ip2 = data2['ip']
+            timestamp = datetime.now() 
+            reason = f"Fue bloqueado por: {data['attack_type']}"
+            crear_blklist(ip2,timestamp,reason)
+            
+            return jsonify({"exito":"se cargo con exito"})
+
+        except Exception as e:
+            return jsonify({"error": f"error: {str(e)}"}), 500
+    else:
+        return jsonify({"no_registro": "no se encontro un registro nuevo"}), 250
+
+
+
+
+
+
+
 
 @app.route('/chat',methods = ['POST'])
 def chat():
