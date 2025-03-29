@@ -1,0 +1,57 @@
+.mainCategoria h1 {
+    color: #e3e3e3;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.cardDispositivo {
+    min-width: 130px;
+    background-color: #1b1b1b;
+    width: fit-content;
+    border-radius: 16px;
+    padding: 28px 38px;
+    margin-right: 32px;
+    margin-bottom: 32px;
+}
+
+.cardDispositivo:last-child {
+    margin-right: 0;
+}
+
+.cardDispositivo h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.cardDispositivo h5 {
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.cardDispositivo p {
+    margin: 0;
+    margin-top: 32px;
+    background-color: #2d2d2d;
+    padding: 12px 16px;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cardDispositivo p:hover {
+    background-color: #414040;
+}
+
+.dispositivosContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 26px;
+    margin-bottom: 52px;
+}
+
+.dispositivosContainer:last-child {
+    margin-bottom: 0;
+}
